@@ -1,0 +1,118 @@
+local Bracket = loadstring(game:HttpGet("https://raw.githubusercontent.com/AlexR32/Bracket/main/BracketV32.lua"))()
+
+-- Notifications (Optional)
+Bracket:Notification()
+Bracket:Notification2()
+
+-- Create the main window
+local Window = Bracket:Window({
+    Name = "Window",
+    Enabled = true,
+    Color = Color3.new(1, 0.5, 0.25),
+    Size = UDim2.new(0, 496, 0, 496),
+    Position = UDim2.new(0.5, -248, 0.5, -248)
+}) do
+
+    -- Create a tab within the window
+    local Tab = Window:Tab({
+        Name = "Tab"
+    }) do
+
+        -- Add elements to the tab
+        Tab:Divider({Text = "Divider", Side = "Left"})
+
+        local Label = Tab:Label({Text = "Label", Side = "Left"})
+
+        local Button = Tab:Button({
+            Name = "Button",
+            Side = "Left",
+            Callback = function() end
+        })
+
+        local Toggle = Tab:Toggle({
+            Name = "Toggle",
+            Side = "Left",
+            Value = false,
+            Callback = function(Bool) end
+        })
+
+        local Slider = Tab:Slider({
+            Name = "Slider",
+            Side = "Left",
+            Min = 0,
+            Max = 100,
+            Value = 50,
+            Precise = 2,
+            Unit = "",
+            Callback = function(Number) end
+        })
+
+        local Textbox = Tab:Textbox({
+            Name = "Textbox",
+            Side = "Left",
+            Text = "Text",
+            Placeholder = "Placeholder",
+            NumberOnly = false,
+            Callback = function(String) end
+        })
+
+        local Keybind = Tab:Keybind({
+            Name = "Keybind",
+            Side = "Left",
+            Key = "NONE",
+            Mouse = false,
+            Blacklist = {"W", "A", "S", "D", "Slash", "Tab", "Backspace", "Escape", "Space", "Delete", "Unknown", "Backquote"},
+            Callback = function(Bool, Key) end
+        })
+
+        local BodyParts = {"Head"}
+        local Dropdown = Tab:Dropdown({
+            Name = "Dropdown",
+            Side = "Left",
+            Default = BodyParts,
+            List = {
+                {
+                    Name = "Head",
+                    Mode = "Toggle",
+                    Value = false,
+                    Callback = function(Selected)
+                        BodyParts = Selected
+                        print(BodyParts)
+                    end
+                },
+                {
+                    Name = "HumanoidRootPart",
+                    Mode = "Toggle",
+                    Value = false,
+                    Callback = function(Selected)
+                        BodyParts = Selected
+                        print(BodyParts)
+                    end
+                }
+            }
+        })
+
+        local Colorpicker = Tab:Colorpicker({
+            Name = "Colorpicker",
+            Side = "Left",
+            Color = Color3.new(1, 0, 0),
+            Callback = function(Color, Table) end
+        })
+
+        -- Create a section within the tab
+        local Section = Tab:Section({
+            Name = "Section",
+            Side = "Right"
+        }) do
+            Section:Divider()
+            Section:Label()
+            Section:Button()
+            Section:Toggle()
+            Section:Slider()
+            Section:Textbox()
+            Section:Keybind()
+            Section:Dropdown()
+            Section:Colorpicker()
+        end
+    end
+end
